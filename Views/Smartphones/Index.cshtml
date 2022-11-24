@@ -1,0 +1,53 @@
+﻿@model IEnumerable<technoland.Models.Smartphones>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row p-0 justify-content-center">
+    <div class="col-2" style="position: fixed; left: 10%; top: 30%; transform: translateX(-50%);">
+        <div class="position-fixed w-75">
+            <div class="row pb-1"><button class="btn bgWhite customBtn btn-rounded fw-bold">Computadoras</button></div>
+            <div class="row pb-1"><button class="btn bgCooper customBtn fw-bold">Laptops</button></div>
+            <div class="row pb-1"><button class="btn bgYellow customBtn fw-bold">Componentes</button></div>
+            <div class="row pb-1"><button class="btn bgGray customBtn fw-bold">Perifericos</button></div>
+        </div>
+    </div>
+    <div class="col-12 align-self-center">
+        <h1 class="yellow">Tienda</h1>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                @foreach (var item in Model)
+                {
+                    <div class="card card-1  m-1 p-0 text-center  hover hover-4 overflow-hidden" style="width: 377px; height:580px">
+                        <div class="overflow-hidden">
+                            <img src="@WC.ImagePath@item.ImageUrl" class="card-img-top img mx-auto d-block " />
+                        </div>
+                        <div class="card-body p-3 bgcard d-grid align-content-between">
+
+                            <h5 class="card-title">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </h5>
+                            <h6 class="text-warning">
+                                $@Html.DisplayFor(modelItem => item.Price)
+                            </h6>
+                            <p class="card-text text-start text-muted card-description">
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </p>
+                            <div class="d-flex m-auto align-items-center justify-content-center">
+                                <div class="social-icon">
+                                    <a asp-action="addToCart" asp-route-id="@item.Id"><img src="~/images/icons/cart.svg" alt="" /></a>
+                                </div>
+
+
+                                <a type="button" class="btn-border draw-border" asp-action="Details" asp-route-id="@item.Id"><span>Detalles</span></a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<technoland.Models.Smartphones>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Administración de productos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nuevo producto</a>
+</p>
+
+
+    <table class="table table-dark table-bordered table-striped d-print-table align-middle w-100">
+    <thead>
+        <tr>
+            <th scope="col">
+                Nombre
+            </th>
+            <th scope="col">
+                Categoria
+            </th>
+            <th scope="col">
+                Descripcion
+            </th>
+            <th scope="col">
+                Precio
+            </th>
+            <th scope="col">
+                Imagen
+            </th>
+            <th scope="col">
+                Accion
+            </th>
+        </tr>
+    </thead>
+        <tbody class="overflow-scroll text-center">
+@foreach (var item in Model) {
+                <tr>
+            <td scope="row">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+                <td scope ="row">
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+                    <td scope="row">
+                    <div class="largeContent text-start">
+                @Html.DisplayFor(modelItem => item.Description)
+
+                </div>
+            </td>
+                <td scope="row">
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+                <td scope="row">
+                    <img src="@WC.ImagePath@item.ImageUrl" class="imgSmall" loading="lazy" />
+                </td>
+            <td scope="row">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary w-100 mb-1">Editar</a> 
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger w-100">Eliminar</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

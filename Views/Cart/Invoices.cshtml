@@ -1,0 +1,150 @@
+﻿@model InvoiceViewModel
+
+@{
+    double subtotal = 0;
+    double total = 0;
+    double iva = 0.16;
+    double envio = 100;
+}
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="col-md-12">
+        <div class="invoice">
+            <!-- begin invoice-company -->
+            <div class="invoice-company text-inverse f-w-600">
+                <span class="pull-right hidden-print">
+                    <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-white m-b-10 p-l-5"><i class="fa fa-print t-plus-1 fa-fw fa-lg"></i> Print</a>
+                </span>
+                TECHNOLAND
+            </div>
+            <!-- end invoice-company -->
+            <!-- begin invoice-header -->
+            <div class="invoice-header">
+                <div class="invoice-from">
+                    <small>De</small>
+                    <address class="m-t-5 m-b-5">
+
+                        <strong class="text-inverse">Technoland (S.A. de C.V.) </strong><br>
+                        Av. Ignacio Morones Prieto 1101, Nuevo Repueblo<br>
+                        Monterrey, NL, 64700<br>
+                        Telefono: (81) 456-7890<br>
+                        Correo: Technoland.negocios@gmail.com
+                    </address>
+                </div>
+                <div class="invoice-to">
+                    <small>Para</small>
+                    <address class="m-t-5 m-b-5">
+                        <strong class="text-inverse">Company Name</strong><br>
+                        Calle, direccion<br>
+                        Ciudad, CP<br>
+                        Telefono: (123) 456-7890<br>
+                        Correo: ejemplo@gmail.com
+                    </address>
+                </div>
+                <div class="invoice-date">
+                    <small>Factura / periodo diciembre</small>
+                    <div class="date text-inverse m-t-5">@Model.invoice.CreatedDate</div>
+                    <div class="invoice-detail">
+                        @Model.invoice.Id<br>
+                         Productos
+                    </div>
+                </div>
+            </div>
+            <!-- end invoice-header -->
+            <!-- begin invoice-content -->
+            <div class="invoice-content">
+                <!-- begin table-responsive -->
+                <div class="table-responsive">
+                    <table class="table table-invoice">
+                        <thead>
+                            <tr>
+                                <th>Descripción</th>
+                                <th class="text-center" width="10%">Precio</th>
+                                <th class="text-center" width="10%">Cantidad</th>
+                                <th class="text-right" width="20%">Precio total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var smartphone in Model.listas.CartProducts)
+                                {
+                                var ProductQuantity = Model.listas.CartProductIDs.Where(productId => productId == smartphone.Id).Count();
+
+                                     <tr>
+                                        <td>
+                                           <span class="text-inverse">@smartphone.Name</span><br>
+                                           <small>@smartphone.Description</small>
+                                        </td>
+                                        <td class="text-center">$@smartphone.Price</td>
+                                        <td class="text-center">@ProductQuantity</td>
+                                        <td class="text-right">$@(smartphone.Price * ProductQuantity)</td>
+                                     </tr>
+                     
+                                }
+                            @{
+                                subtotal = Model.listas.CartProducts.Sum(x => x.Price * Model.listas.CartProductIDs.Where(productId => productId == x.Id).Count());
+                                 total = (subtotal + envio) + (subtotal * iva);
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- end table-responsive -->
+                <!-- begin invoice-price -->
+                <div class="invoice-price">
+                    <div class="invoice-price-left">
+                        <div class="invoice-price-row">
+                            <div class="sub-price">
+                                <small>SUBTOTAL</small>
+                                <span class="text-inverse">$@subtotal</span>
+                            </div>
+                            <div class="sub-price">
+                                <i class="fa fa-plus text-muted"></i>
+                            </div>
+                            <div class="sub-price">
+                                <small>ENVIO</small>
+                                <span class="text-inverse">$@envio</span>
+                            </div>
+                            <div class="sub-price">
+                                <i class="fa fa-plus text-muted"></i>
+                            </div>
+                            <div class="sub-price">
+                                <small>IVA(16%)</small>
+                                @{
+                                    double ivaSubtotal = (subtotal * iva);
+                                    double ivadecimales = Math.Round(ivaSubtotal, 2);
+                                }
+                                <span class="text-inverse">$@ivadecimales</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="invoice-price-right">
+                        
+
+                        <small>TOTAL</small> <span class="f-w-600">$@total</span>
+                    </div>
+                </div>
+                <!-- end invoice-price -->
+            </div>
+            <!-- end invoice-content -->
+            <!-- begin invoice-note -->
+            <div class="invoice-note">
+                * El pago vence dentro de los 30 días<br>
+                * Si tiene alguna pregunta sobre esta factura, comuníquese con [Andres, (81) 456-7890, Technoland.negocios@gmail.com]
+            </div>
+            <!-- end invoice-note -->
+            <!-- begin invoice-footer -->
+            <div class="invoice-footer">
+                <p class="text-center m-b-5 f-w-600">
+                    GRACIAS POR TU COMPRA
+                </p>
+                <p class="text-center">
+                    <span class="m-r-10"><i class="fa fa-fw fa-lg fa-globe"></i> matiasgallipoli.com</span>
+                    <span class="m-r-10"><i class="fa fa-fw fa-lg fa-phone-volume"></i> T:016-18192302</span>
+                    <span class="m-r-10"><i class="fa fa-fw fa-lg fa-envelope"></i> rtiemps@gmail.com</span>
+                </p>
+            </div>
+            <!-- end invoice-footer -->
+        </div>
+    </div>
+</div>
