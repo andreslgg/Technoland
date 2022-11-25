@@ -2,7 +2,6 @@ html {
     font-size: 14px;
     position: relative;
     min-height: 100%;
-
     background-color: #171717;
     color: white;
     --yellow: #c6c15f;
@@ -16,6 +15,7 @@ html {
     --danger: #f44336;
     --dangerH: #A91D13;
     --gradient: linear-gradient(to left top, #C6C15F 30%, #A1755B 90%) !important;
+    --gradient2: linear-gradient(to right, #18151F, #272423) !important;
 }
 
 .copper {
@@ -55,10 +55,22 @@ html {
 
 .bgGray {
     background-color: var(--gray) !important;
+    color: var(--black) !important;
 }
 
 .bgBlack {
     background-color: var(--black) !important;
+    color: var(--white) !important;
+}
+
+.bgGradient {
+    background-color: var(--gradient) !important;
+    color: var(--white) !important;
+}
+
+.bgGradient2 {
+    background: var(--gradient2) !important;
+    color: var(--white) !important;
 }
 
 .customBtn {
@@ -157,10 +169,11 @@ a:hover, a:active {
     color: var(--gray);
 }
 
-input[type=text], input[type=number], input[type=file], input[type=text]:only-of-type, input[type=number]:only-of-type {
-    background-color: var(--black);
-    color: var(--white);
+input[type=text], input[type=number], input[type=file], input[type=text]:only-of-type, input[type=number]:only-of-type, select {
+    background-color: var(--black) !important;
+    color: var(--white) !important;
 }
+
 
 .imgSmall {
     width: 100px;
@@ -544,6 +557,11 @@ label {
 
 .paypal {
     background: url(../images/icons/cc-paypal.svg);
+    background-repeat: no-repeat;
+}
+
+.cart {
+    background: url(../images/icons/cart2.svg);
     background-repeat: no-repeat;
 }
 .w40{

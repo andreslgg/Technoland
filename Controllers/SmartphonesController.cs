@@ -22,8 +22,6 @@ namespace Technoland.Controllers
             _context = context;
         }
 
-      
-
         public List<Smartphones> GetSmartphones(List<int> ids)
         {
          
@@ -64,8 +62,17 @@ namespace Technoland.Controllers
                 return View(await _context.Smartphones.ToListAsync());
             }
 
-            // GET: Products/Details/5
-            public async Task<IActionResult> Details(int? id)
+            public async Task<IActionResult> Category(int? id) 
+            { 
+                if(id == 0)
+                {
+                    return RedirectToAction("Index");
+                }
+                return View("Index", await _context.Smartphones.Where(smarphone => smarphone.Category == id).ToListAsync());    
+            }
+
+        // GET: Products/Details/5
+        public async Task<IActionResult> Details(int? id)
             {
                 if (id == null || _context.Smartphones == null)
                 {

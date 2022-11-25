@@ -1,7 +1,9 @@
 ﻿@model technoland.Models.Smartphones
+
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 
 <h1>Crear nuevo producto</h1>
@@ -18,7 +20,14 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Categoria</label>
-                <input asp-for="Category" class="form-control" />
+                <select name="Category" asp-for="Category" class="form-control">
+                    <option value=""></option>
+                    <option value="1">Iphone</option>
+                    <option value="2">Samsung</option>
+                    <option value="3">Huawei</option>
+                    <option value="4">Xiaomi</option>
+                </select>
+
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>
             <div class="form-group">

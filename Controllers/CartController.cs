@@ -65,7 +65,6 @@ namespace Technoland.Controllers
 
         public ActionResult SubstractToCart(int id)
         {
-
             List<int> listaID = listaIDs();
             var index = listaID.IndexOf(id);
             if (index > -1) listaID.RemoveAt(index);
@@ -77,11 +76,9 @@ namespace Technoland.Controllers
    
     public async Task<IActionResult> DeleteItem(int? id)
         {
-
             List<int> listaID = listaIDs();
             listaID.RemoveAll(item => item == id);
             Response.Cookies.Append("carrito", value: listaID.ToJson()); 
-
 
             return RedirectToAction("Index", PartialView("Cart"));
         }

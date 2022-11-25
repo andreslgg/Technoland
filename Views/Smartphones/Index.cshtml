@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<technoland.Models.Smartphones>
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,10 +9,11 @@
 <div class="row p-0 justify-content-center">
     <div class="col-2" style="position: fixed; left: 10%; top: 30%; transform: translateX(-50%);">
         <div class="position-fixed w-75">
-            <div class="row pb-1"><button class="btn bgWhite customBtn btn-rounded fw-bold">Computadoras</button></div>
-            <div class="row pb-1"><button class="btn bgCooper customBtn fw-bold">Laptops</button></div>
-            <div class="row pb-1"><button class="btn bgYellow customBtn fw-bold">Componentes</button></div>
-            <div class="row pb-1"><button class="btn bgGray customBtn fw-bold">Perifericos</button></div>
+            <div class="row pb-1"><a asp-action="Category" asp-route-id="0" class="btn bgGradient2 customBtn fw-bold">Todos</a></div>
+            <div class="row pb-1"><a asp-action="Category" asp-route-id="1" class="btn bgWhite customBtn fw-bold">Iphone</a></div>
+            <div class="row pb-1"><a asp-action="Category" asp-route-id="2" class="btn bgCooper customBtn fw-bold">Samsung</a></div>
+            <div class="row pb-1"><a asp-action="Category" asp-route-id="3" class="btn bgYellow customBtn fw-bold">Huawei</a></div>
+            <div class="row pb-1"><a asp-action="Category" asp-route-id="4" class="btn bgGray customBtn fw-bold">Xiaomi</a></div>
         </div>
     </div>
     <div class="col-12 align-self-center">
