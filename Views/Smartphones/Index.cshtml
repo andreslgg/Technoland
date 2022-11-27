@@ -32,8 +32,8 @@
                             <h5 class="card-title">
                                 @Html.DisplayFor(modelItem => item.Name)
                             </h5>
-                            <h6 class="text-warning">
-                                $@Html.DisplayFor(modelItem => item.Price)
+                            <h6 class="text-warning money">
+                                @Html.DisplayFor(modelItem => item.Price)
                             </h6>
                             <p class="card-text text-start text-muted card-description">
                                 @Html.DisplayFor(modelItem => item.Description)
@@ -53,3 +53,4 @@
         </div>
     </div>
 </div>
+

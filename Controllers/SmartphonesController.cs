@@ -24,14 +24,11 @@ namespace Technoland.Controllers
 
         public List<Smartphones> GetSmartphones(List<int> ids)
         {
-         
-                return _context.Smartphones.Where(x => ids.Contains(x.Id)).ToList();
-            
+                return _context.Smartphones.Where(x => ids.Contains(x.Id)).ToList();    
         }
 
         public async Task<IActionResult> addToCart(int? id)
             {
-
                 var cookieOptions = new Microsoft.AspNetCore.Http.CookieOptions()
                 {
                     Path = "/",
@@ -45,19 +42,64 @@ namespace Technoland.Controllers
                 {
                     listaIDs = new List<int>(carritoJson.FromJson<int[]>()); 
                 }
-
                 listaIDs.Add((int)id); //se agrega el id a la lista
-
                 Response.Cookies.Append("carrito", value: listaIDs.ToJson(), cookieOptions); //se envia la cookie navegador del cliente
-
 
             return Redirect(Request.Headers["Host"].ToString()); //Se queda en la misma pagina para seguir navegando productos
             }
 
+        [HttpGet("addMultipleToCart/{id}/{cantidad}")]
+        public async Task<IActionResult> addMultipleToCart(int? id, int cantidad)
+        {
+            var cookieOptions = new Microsoft.AspNetCore.Http.CookieOptions()
+            {
+                Path = "/",
+                HttpOnly = false,
+                IsEssential = true,
+                Expires = DateTime.Now.AddDays(7),  
+            };
+            var carritoJson = Request.Cookies["carrito"];
+            List<int> listaIDs = new List<int>();
+            if (carritoJson != null)  
+            { 
+                    listaIDs = new List<int>(carritoJson.FromJson<int[]>());       
+            }
+            for (int i = 0; i < cantidad; i++)
+            {
+            listaIDs.Add((int)id); 
+            }
+            Response.Cookies.Append("carrito", value: listaIDs.ToJson(), cookieOptions); 
 
+            return RedirectToAction("Index");
+        }
 
-            // GET: Products
-            public async Task<IActionResult> Index()
+        [HttpGet("buyNow/{id}/{cantidad}")]
+        public async Task<IActionResult> buyNow(int? id, int cantidad)
+        {
+            var cookieOptions = new Microsoft.AspNetCore.Http.CookieOptions()
+            {
+                Path = "/",
+                HttpOnly = false,
+                IsEssential = true,
+                Expires = DateTime.Now.AddDays(7),
+            };
+            var carritoJson = Request.Cookies["carrito"];
+            List<int> listaIDs = new List<int>();
+            if (carritoJson != null)
+            {
+                listaIDs = new List<int>(carritoJson.FromJson<int[]>());
+            }
+            for (int i = 0; i < cantidad; i++)
+            {
+                listaIDs.Add((int)id);
+            }
+            Response.Cookies.Append("carrito", value: listaIDs.ToJson(), cookieOptions);
+
+            return RedirectToAction("Index","Cart");
+        }
+
+        // GET: Products
+        public async Task<IActionResult> Index()
             {
                 return View(await _context.Smartphones.ToListAsync());
             }

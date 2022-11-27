@@ -3,49 +3,129 @@
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    @Html.Hidden("id",Model.Id)
+    ;
+
 }
 
-<h1>Details</h1>
+<div class="cardDetails rounded-top rounded-5 ">
+    <div class="cardDetails__title ">
+        <div class="w-100 text-start">
+            <form asp-action="Details">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="⟸ Regresar" asp-action="Index" class="btn customBtn bg-light text-start w-100 fw-bold rounded-start" />
+            </form>
 
-<div>
-    <h4>Products</h4>
-    <hr />
-    <dl class="row text-white">
-        <dt class = "col-sm-2">
-            Nombre
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            Categoria
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category)
-        </dd>
-        <dt class = "col-sm-2">
-            Descripcion
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            Precio
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            Imagen
-        </dt>
-        <dd class = "col-sm-10">
-            <img src="@WC.ImagePath@Model.ImageUrl" class="img"/>
+        </div>
+    </div>
+    <div class="cardDetails__body">
+        <div class="half">
+            <div class="featured_text text-center">
+                <h1>@Html.DisplayFor(model => model.Name)</h1>
+                <p class="sub">NUEVO PRODUCTO</p>
+                <p class="price yellow money">@Html.DisplayFor(model => model.Price)</p>
+            </div>
+            <div class="cn f a j">
+                <div class="wp f">
+                    <aside>
+                        <div class="zoom">
+                            <div class="original imgDetails ">
+                                <img src="@WC.ImagePath@Model.ImageUrl" id="target">
+                            </div>
+                            <div id="viewer" class="viewer imgDetails" style="z-index:1">
+                                <img src="@WC.ImagePath@Model.ImageUrl">
+                            </div>
+                            <div class="magnifier"></div>
+                        </div>
+                    </aside>
+                    <aside>
+                        <div class="bodyDetails text-center">
+                            <input type="range" min="2" max="10" value="2" />
 
+                            <div class="text-start">
+                                <p>@Html.DisplayFor(model => model.Description)</p>
+                            </div>
+                            <div>
+                                <div>
+                                    <span class="stock"><i class="fa fa-pen"></i>En stock</span>
+                                    <div class="reviews">
+                                        <ul class="stars">
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="custom-input">
+                                <h5>Cantidad</h5>
+                                <span class="btnc" data-type="decrease">-</span>
+                                <input type="number" step="1" min="1" value="1" id="counter" disabled>
+                                <span class="btnc" data-type="increase">+</span>
+                            </div>
+                            <button class="btn customBtn bgGray fw-bold rounded-6" type="submit" onclick="agregarMultiple()">Agregar</button>
+                        </div>
 
-        </dd>
-        <form asp-action="Details">
-            <input type="hidden" asp-for="Id" />
-            <input type="submit" value="Regresar" asp-action="Index" class="btn btn-warning w-25" />
-        </form>
-    </dl>
+                    </aside>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="cardDetails__footer">
+        <div class="recommend">
+            <p>Consultar garantias</p>
+        </div>
+            <button class="btn customBtn bgYellow fw-bold rounded-pill" type="submit" onclick="comprar()">COMPRAR</button>
+    </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+<script type="text/javascript" src="/js/zoom.js"></script>
+<script type="text/javascript">
+
+    var l = $('#target').zoom();
+    l.setZoom(2);
+    $('input[type="range"]').on('change', function () {
+        l.setZoom(this.value);
+
+    });
+</script>
+<script type="text/javascript">
+
+    $('.btnc').on('click', function (e) {
+        e.preventDefault();
+
+        var button = $(this);
+        var oldValue = $('#counter').val();
+
+        if (button.attr('data-type') == "increase") {
+            var newVal = parseFloat(oldValue) + 1;
+        } else {
+            if (oldValue > 1) {
+                var newVal = parseFloat(oldValue) - 1;
+            } else {
+                newVal = 1;
+            }
+        }
+
+        $('#counter').val(newVal);
+
+    });
+</script>
+<script type="text/javascript" defer>
+    function agregarMultiple() {
+        var id = document.getElementById('id').value;
+        var cantidad = document.getElementById('counter').value;
+        var url = '@Url.Action("addMultipleToCart", "Smartphones", new { id = "_id_",cantidad ="_cantidad_"})';
+        window.location.href = url.replace("_id_", id).replace("_cantidad_", cantidad);
+    }
+    function comprar() {
+        var id = document.getElementById('id').value;
+        var cantidad = document.getElementById('counter').value;
+        var url = '@Url.Action("buyNow", "Smartphones", new { id = "_id_",cantidad ="_cantidad_"})';
+        window.location.href = url.replace("_id_", id).replace("_cantidad_", cantidad);
+    }
+</script>

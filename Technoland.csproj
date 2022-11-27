@@ -8,7 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Invoices\Edit.cshtml" />
+    <Compile Remove="Views\Invoices\**" />
+    <Content Remove="Views\Invoices\**" />
+    <EmbeddedResource Remove="Views\Invoices\**" />
+    <None Remove="Views\Invoices\**" />
   </ItemGroup>
 
   <ItemGroup>

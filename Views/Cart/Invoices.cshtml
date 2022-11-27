@@ -76,9 +76,9 @@
                                            <span class="text-inverse">@smartphone.Name</span><br>
                                            <small>@smartphone.Description</small>
                                         </td>
-                                        <td class="text-center">$@smartphone.Price</td>
+                                        <td class="text-center money">@smartphone.Price</td>
                                         <td class="text-center">@ProductQuantity</td>
-                                        <td class="text-right">$@(smartphone.Price * ProductQuantity)</td>
+                                        <td class="text-right money">@(smartphone.Price * ProductQuantity)</td>
                                      </tr>
                      
                                 }
@@ -96,7 +96,7 @@
                         <div class="invoice-price-row">
                             <div class="sub-price">
                                 <small>SUBTOTAL</small>
-                                <span class="text-inverse">$@subtotal</span>
+                                <span class="text-inverse money">@subtotal</span>
                             </div>
                             <div class="sub-price">
                                 <i class="fa fa-plus text-muted"></i>
@@ -114,14 +114,14 @@
                                     double ivaSubtotal = (subtotal * iva);
                                     double ivadecimales = Math.Round(ivaSubtotal, 2);
                                 }
-                                <span class="text-inverse">$@ivadecimales</span>
+                                <span class="text-inverse money">@ivadecimales</span>
                             </div>
                         </div>
                     </div>
                     <div class="invoice-price-right">
                         
 
-                        <small>TOTAL</small> <span class="f-w-600">$@total</span>
+                        <small>TOTAL</small> <span class="f-w-600 money">@total</span>
                     </div>
                 </div>
                 <!-- end invoice-price -->
@@ -138,11 +138,7 @@
                 <p class="text-center m-b-5 f-w-600">
                     GRACIAS POR TU COMPRA
                 </p>
-                <p class="text-center">
-                    <span class="m-r-10"><i class="fa fa-fw fa-lg fa-globe"></i> matiasgallipoli.com</span>
-                    <span class="m-r-10"><i class="fa fa-fw fa-lg fa-phone-volume"></i> T:016-18192302</span>
-                    <span class="m-r-10"><i class="fa fa-fw fa-lg fa-envelope"></i> rtiemps@gmail.com</span>
-                </p>
+           
             </div>
             <!-- end invoice-footer -->
         </div>

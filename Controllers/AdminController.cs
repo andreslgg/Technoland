@@ -31,7 +31,7 @@ namespace Technoland.Controllers
 
         // GET: Admin
         public async Task<IActionResult> Index()
-        {
+        {     
             return View(await _context.Smartphones.ToListAsync());
         }
 
