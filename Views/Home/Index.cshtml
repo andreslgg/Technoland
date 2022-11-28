@@ -1,8 +1,113 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
+<!-- IMAGEN DE FONDO - INICIO -->
+<section class="position-relative">
+    <div class="bg-image" style="background-image: url('https://images.samsung.com/is/image/samsung/assets/test/smartphones/galaxy-pcd/galaxy-z-finder/galaxy-z-finder-intro.jpg?$ORIGIN_JPG$');
+                    background-repeat:no-repeat;
+                    background-size: cover;
+                    filter: blur(2px);
+                    filter: brightness(0.7);
+                    height: 100vh;"></div>
+    <div class="d-flex flex-column align-items-center justify-content-center position-absolute top-0 text-white vh-100 text-align-center"
+         style="width: 100%;">
+        <h1 class="display-1 fw-bold text-align-center" style="text-shadow: 4px 6px 0px black;">
+            ENCUENTRA TU
+            GALAXY Z
+        </h1>
+        <h2 class="display-6 " style="text-shadow: 2px 2px 3px yellow;">
+            ENCUENTRA TU TELEFONO IDEAL EN
+            TECHNOLAND
+        </h2>
+        <a asp-controller="Smartphones" class="btn btn-dark">Conoce más</a>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    </div>
+</section>
+<section class="d-flex flex-column text-center" style="margin: 0px 25% 0px 25%;">
+    <h1 class="p-4 fw-bold display-3">SUSCRIBIRSE</h1>
+    <p>
+        ¡Obtén un descuento de 6% en tu primera compra en nuestra tienda de celulares en línea, al inscribirte
+        para recibir nuestro boletín informativo y recibe las mejores promociones de los mejores celulares
+        baratos y buenos!
+    </p>
+    <div class="d-flex">
+        <input type="text" class="w-75 me-2 rounded border border-secondary p-2" placeholder="INGRESA TU CORREO ELECTRONICO">
+        <button class="rounded btn btn-primary">SUSCRIBIRSE</button>
+    </div>
+</section>
+<!-- CELULARES VARIOS -->
+<section class="mt-4 w-90 h-100 bg-secondary ms-5 me-5 pb-5 rounded rounded-5">
+    <h1 class="text-center text-light fw-bold display-4 p-4">CELULARES DESTACADOS</h1>
+    <div class="row text-center w-100">
+        <div class="col-4 border-end border-light">
+            <img class="img-thumbnail" src="https://www.telcel.com/content/dam/telcelcom/dispositivos/Apple/iPhone11/imagenes/blanco/frontal.jpg/jcr:content/renditions/cq5dam.web.250.470.jpeg" alt="">
+            <h1>iPhone 11</h1>
+            <p>Capacidad: 64 GB</p>
+            <h2>$10,999.00</h2>
+            <a asp-controller="Smartphones" class="btn btn-dark">MÁS INFORMACIÓN</a>
+        </div>
+        <div class="col-4 border-end border-light">
+            <img class="img-thumbnail" src="https://www.telcel.com/content/dam/telcelcom/dispositivos/Xiaomi/M2101K6R/imagenes/gris/frontal.jpg/jcr:content/renditions/cq5dam.web.250.470.jpeg" alt="">
+            <h1>Redmi Note 10 Pro</h1>
+            <p>Capacidad: 128 GB</p>
+            <h2>$5,999.00</h2>
+            <a asp-controller="Smartphones" class="btn btn-dark">MÁS INFORMACIÓN</a>
+        </div>
+        <div class="col-4">
+            <img class="img-thumbnail" src="https://www.telcel.com/content/dam/telcelcom/dispositivos/motorola/XT2225-1/imagenes/negro/frontal.jpg/jcr:content/renditions/cq5dam.web.250.470.jpeg" alt="">
+            <h1>moto g82 5G</h1>
+            <p>Capacidad: 128 GB</p>
+            <h2>$6,999.00</h2>
+            <a asp-controller="Smartphones" class="btn btn-dark">MÁS INFORMACIÓN</a>
+        </div>
+    </div>
+</section>
+<!-- CATEGORIAS DESTACADAS -->
+<section class="container-fluid h-100">
+    <h1 class="text-center text-light fw-bold display-4 p-4">CATEGORIAS MÁS DESTACADAS</h1>
+    <div class="row text-white fw-bold h-100 me-5 ms-5 pb-5">
+        <div class="position-relative col-4 h-100 animation">
+            <div class="bg-image w-100 h-100">
+                <img class="w-100 h-100" style="filter: brightness(0.5); height: 100%;" src="https://img.freepik.com/foto-gratis/mensaje-texto-chico-alegre-smartphone_74855-3556.jpg?w=740&t=st=1669404005~exp=1669404605~hmac=c9a7c13e1c5eb80a584c6c354d609351e8a344e64342567f4150a3484462f19c">
+            </div>
+            <div class="position-absolute top-0  display-4 d-flex h-100 align-items-center justify-content-center">
+                <h1 class="display-5 text-center text-animation text-white fw-bold">NUEVOS PRODUCTOS</h1>
+            </div>
+        </div>
+        <div class="position-relative col-4 h-50 animation">
+            <div class="bg-image w-100 h-100">
+                <img class="w-100 h-100" style="filter: brightness(0.5);" src="https://img.freepik.com/foto-gratis/mujer-belleza-usando-leyendo-telefono-inteligente-aislado_231208-10409.jpg?size=626&ext=jpg">
+            </div>
+            <div class="position-absolute top-0 d-flex h-100 w-100 align-items-center justify-content-center">
+                <h1 class="display-5 text-center text-white fw-bold">MÁS POPULAR</h1>
+            </div>
+        </div>
+        <div class="position-relative col-4 h-50 animation">
+            <div class="bg-image w-100 h-100">
+                <img class="w-100 h-100" src="https://images.ctfassets.net/yxlyq25bynna/6t32ytrvabVQEWm4N1EPGI/cd87f38cca93175b9eb422d254339f2e/Hero_landing_Recarga_de_celular.jpg?fm=webp&q=95" style="filter: brightness(0.5);">
+            </div>
+            <div class="position-absolute top-0 d-flex h-100 w-100 align-items-center justify-content-center">
+                <h1 class="display-5 text-center text-white fw-bold">MEJOR VALOR</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- PREGUNTAS FRECUENTES -->
+<section class="mt-4 h-100 container-fluid bg-secondary rounded rounded-5 mb-4" style="width: 90%; margin: 0px 5% 0px 5%">
+    <h1 class="text-center text-light fw-bold display-4 p-4">PREGUNTAS FRECUENTES</h1>
+    <div class="row ms-5 me-5 h-100 text-light pb-5">
+        <div class="col-4 border-end border-light text-center d-flex flex-column align-items-center justify-content-between">
+            <h1 class="text-light display-6 text-center">¿CUÁLES SON LAS FORMAS DE PAGO ACEPTADAS?</h1>
+            <button class="btn btn-dark text-white rounded-5 mt-3 w-50 text-center">OBTEN MÁS INFORMACIÓN</button>
+        </div>
+        <div class="col-4 border-end border-light text-center d-flex flex-column align-items-center justify-content-between">
+            <h1 class="text-light display-6 text-center">¿CUÁLES SON LOS MÉTODOS DE ENTREGA?</h1>
+            <button class="btn btn-dark text-white rounded-5 mt-3 w-50 text-center">OBTEN MÁS INFORMACIÓN</button>
+        </div>
+        <div class="col-4 text-center d-flex flex-column align-items-center justify-content-between">
+            <h1 class="text-light display-6 text-center ">¿ES SEGURO COMPRAR EN TECHNOLAND?</h1>
+            <button class="btn btn-dark text-white rounded-5 mt-3 w-50 text-center">OBTEN MÁS INFORMACIÓN</button>
+        </div>
+    </div>
+</section>
