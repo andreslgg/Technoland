@@ -922,3 +922,97 @@ input:focus {
 .currSign:before {
     content: '$';
 }
+
+
+
+button {
+    cursor: pointer;
+}
+
+a, button {
+    transition: all 0.3s ease;
+}
+
+
+
+.tm-btn {
+    display: inline-block;
+    border: 1px solid #666;
+    background-color: transparent;
+    color: #999;
+    padding: 14px 40px;
+    font-size: 20px;
+}
+
+    .tm-btn:hover {
+        color: #99CC99;
+        border-color: #99CC99;
+    }
+
+.tm-text-small {
+    font-size: 0.9em;
+}   
+
+.tm-text-right {
+    text-align: right;
+}
+
+.tm-text-primary {
+    color: var(--yellow);
+}
+
+
+a{
+    text-decoration:none;
+}
+
+
+.tm-mb-50 {
+    margin-bottom: 50px;
+}
+
+
+.tm-mb-130 {
+    margin-bottom: 130px;
+}
+
+
+
+/* Layout */
+.tm-section {
+    display: flex;
+}
+
+.tm-section-col {
+    flex: 0 0 50%;
+    width: 50%;
+}
+
+.tm-content {
+    padding: 180px 60px 70px 100px;
+    box-sizing: border-box;
+}
+
+.tm-content-small {
+    padding: 190px 120px 70px;
+}
+
+.tm-content-small-top {
+    padding-top: 130px;
+}
+
+.tm-row {
+    display: flex;
+    margin-left: -25px;
+    margin-left: -25px;
+}
+
+.tm-col {
+    flex: 0 0 50%;
+    width: 50%;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+
+
